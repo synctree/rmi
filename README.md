@@ -13,6 +13,7 @@ Currently this installer is very dumb, it assumes you have a vanilla installatio
 ## Components
   
   * Homebrew
+  * OSX GCC Command Line Tools
   * RVM
   * Ruby 1.8.7, 1.9.2, 1.9.3
   * Rails
