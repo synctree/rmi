@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+brew install https://raw.github.com/synctree/rmi/develop/homebrews/nginx/1.2.0/nginx.rb
+curl -L https://raw.github.com/synctree/rmi/develop/config/nginx.conf > /usr/local/etc/nginx/nginx.conf
+sed -i '' -e 's?#<HOME>?'"$HOME"'?' /usr/local/etc/nginx/nginx.conf
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/nginx/1.2.0/homebrew.mxcl.nginx.plist ~/Library/LaunchAgents/
+sed -i '' -e 's?<string>'"$LOGNAME"'</string>?<string>root</string>?g' ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+
+# Nginx starts with sudo so we can use port 443 for SSL
+sudo chown root ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+sudo chmod 644 ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist

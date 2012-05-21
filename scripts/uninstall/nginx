@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist > /dev/null 2>&1 || true
+brew uninstall nginx
+rm -rf /usr/local/etc/nginx
+rm -rf ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist

@@ -1,0 +1,4 @@
+curl -L https://raw.github.com/synctree/rmi/develop/scripts/uninstall/base | bash
+curl -L https://raw.github.com/synctree/rmi/develop/scripts/uninstall/nginx | bash
+curl -L https://raw.github.com/synctree/rmi/develop/scripts/uninstall/mysql | bash
+curl -L https://raw.github.com/synctree/rmi/develop/scripts/uninstall/redis | bash

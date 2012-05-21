@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Homebrew
+/usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+
+# GCC
+brew install https://raw.github.com/synctree/rmi/develop/homebrews/apple-gcc42.rb
+
+# Dependencies
+brew install ack autoconf automake colordiff curl git git-flow libmemcached libxml2 libxslt lzlib lzo memcached pcre readline sqlite v8 wget xz
+brew tap homebrew/dupes
+brew install homebrew/dupes/libiconv
+
+# RVM
+curl -L get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+rvm get head
+
+# Rubies
+rvm install 1.8.7
+rvm install 1.9.2
+rvm install 1.9.3
+
+# Global RubyGems
+curl -L https://raw.github.com/synctree/rmi/develop/dotfiles/gemrc > ~/.gemrc
+rvm 1.8.7@global,1.9.2@global,1.9.3@global do gem install bundler cheat gist git_remote_branch open_gem powder
+
+# Ruby Defaults
+rvm use 1.9.3 --default
+
+# POW
+sudo -v
+curl get.pow.cx | sh
+
+# Rails
+rvm gemset use rails --create
+gem install rails

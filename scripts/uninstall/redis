@@ -1,0 +1,4 @@
+launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.redis.plist > /dev/null 2>&1 || true
+brew uninstall redis
+rm -rf ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+rm -rf /usr/local/etc/redis.conf
