@@ -4,8 +4,9 @@
 /usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
 
 # Dependencies
-brew install ack autoconf automake colordiff curl git git-flow libmemcached libxml2 libxslt lzlib lzo memcached pcre readline sqlite v8 wget xz
+brew install git
 brew tap homebrew/dupes
+brew install ack autoconf automake colordiff curl git-flow libmemcached libxml2 libxslt lzlib lzo memcached pcre readline sqlite v8 wget xz
 brew install homebrew/dupes/libiconv
 
 # GCC
