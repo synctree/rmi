@@ -1,20 +1,37 @@
 #!/usr/bin/env bash
 
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+
+# GCC
+curl -L -O https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg
+sudo installer -pkg GCC-10.7-v2.pkg -target /
+
 # Homebrew
-/usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+
+if command_exists brew ; then
+  echo "Homebrew already installed, updating..."
+else
+  /usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+fi
+
+brew update
 
 # Dependencies
 brew install git
 brew tap homebrew/dupes
-brew install ack autoconf automake colordiff curl git-flow libmemcached libxml2 libxslt lzlib lzo memcached pcre readline sqlite v8 wget xz
+brew install ack autoconf automake colordiff curl git-flow libiconv libmemcached libxml2 libxslt lzlib lzo memcached pcre readline sqlite v8 wget xz
 brew install homebrew/dupes/libiconv
 
-# GCC
-brew install https://raw.github.com/synctree/rmi/develop/homebrews/apple-gcc42.rb
-
 # RVM
-curl -L get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
+if command_exists rvm ; then
+  echo "RVM already installed, updating..."
+else
+  curl -L get.rvm.io | bash -s stable
+  source ~/.rvm/scripts/rvm  
+end 
+
 rvm get head
 
 # Rubies
@@ -23,8 +40,7 @@ rvm install 1.9.2
 rvm install 1.9.3
 
 # Global RubyGems
-curl -L https://raw.github.com/synctree/rmi/develop/dotfiles/gemrc > ~/.gemrc
-rvm 1.8.7@global,1.9.2@global,1.9.3@global do gem install bundler cheat gist git_remote_branch open_gem powder
+rvm 1.8.7@global,1.9.2@global,1.9.3@global do gem install bundler cheat gist git_remote_branch open_gem powder --no-ri --no-rdoc
 
 # Ruby Defaults
 rvm use 1.9.3 --default
@@ -34,5 +50,5 @@ sudo -v
 curl get.pow.cx | sh
 
 # Rails
-rvm gemset use rails --create
+rvm --create gemset use rails
 gem install rails
