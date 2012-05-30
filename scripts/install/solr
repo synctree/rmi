@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+brew install https://raw.github.com/synctree/rmi/develop/homebrews/solr/3.6.0/solr.rb
+mkdir -p ~/Library/LaunchAgents
+cp /usr/local/Cellar/solr/3.6.0/com.apache.solr.plist ~/Library/LaunchAgents/
+launchctl unload -w ~/Library/LaunchAgents/com.apache.solr.plist > /dev/null 2>&1 || true
+launchctl load -w ~/Library/LaunchAgents/com.apache.solr.plist
