@@ -9,7 +9,6 @@ curl -L -O https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-
 sudo installer -pkg GCC-10.7-v2.pkg -target /
 
 # Homebrew
-
 if command_exists brew ; then
   echo "Homebrew already installed, updating..."
 else
@@ -19,10 +18,8 @@ fi
 brew update
 
 # Dependencies
-brew install git
-brew tap homebrew/dupes
-brew install ack autoconf automake colordiff curl git-flow libiconv libmemcached libxml2 libxslt lzlib lzo memcached pcre readline sqlite v8 wget xz
-brew install homebrew/dupes/libiconv
+brew install https://raw.github.com/synctree/rmi/develop/homebrews/apple-gcc42.rb
+brew install git ack autoconf automake colordiff curl git-flow libmemcached libxml2 libxslt lzlib lzo memcached pcre readline sqlite v8 wget xz
 
 # RVM
 if command_exists rvm ; then

@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 brew install mysql
+mkdir -p /usr/local/etc
 curl -L https://raw.github.com/synctree/rmi/develop/config/my.cnf > /usr/local/etc/my.cnf
-mysql_install_db --verbose --user=`whoami` --basedir="/usr/local/Cellar/mysql/5.1.59" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+mysql_install_db --verbose --user=`whoami` --basedir="/usr/local/Cellar/mysql/5.5.24" --datadir=/usr/local/var/mysql --tmpdir=/tmp
 mkdir -p ~/Library/LaunchAgents
-cp /usr/local/Cellar/mysql/5.5.*/com.mysql.mysqld.plist ~/Library/LaunchAgents/
+cp /usr/local/Cellar/mysql/5.5.24/com.mysql.mysqld.plist ~/Library/LaunchAgents/
 launchctl unload -w ~/Library/LaunchAgents/com.mysql.mysqld.plist > /dev/null 2>&1 || true
 launchctl load -w ~/Library/LaunchAgents/com.mysql.mysqld.plist
+echo 'export PATH=$PATH:/usr/local/mysql/bin' >> ~/.bash_profile
