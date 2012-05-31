@@ -11,3 +11,5 @@ sed -i '' -e 's?<string>'"$LOGNAME"'</string>?<string>root</string>?g' ~/Library
 sudo chown root ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
 sudo chmod 644 ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
 sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+echo 'export PATH=$PATH:/usr/local/nginx/sbin' >> ~/.bash_profile
+source ~/.bash_profile
