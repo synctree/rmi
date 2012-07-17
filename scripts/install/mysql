@@ -3,9 +3,9 @@
 brew install mysql
 mkdir -p /usr/local/etc
 curl -L https://raw.github.com/synctree/rmi/develop/config/my.cnf > /usr/local/etc/my.cnf
-mysql_install_db --verbose --user=`whoami` --basedir="/usr/local/Cellar/mysql/5.5.25" --datadir=/usr/local/var/mysql --tmpdir=/tmp
+mysql_install_db --verbose --user=`whoami` --basedir="/usr/local/Cellar/mysql/5.5.25a" --datadir=/usr/local/var/mysql --tmpdir=/tmp
 mkdir -p ~/Library/LaunchAgents
-cp /usr/local/Cellar/mysql/5.5.25/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+cp /usr/local/Cellar/mysql/5.5.25a/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
 launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist > /dev/null 2>&1 || true
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 echo 'export PATH=$PATH:/usr/local/mysql/bin' >> ~/.bash_profile
